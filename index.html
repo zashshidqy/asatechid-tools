@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AsaTechID Tools Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0 16px;">
+<!--
+AsaTechID Tools Hub — Elementor Custom HTML
+Version: 2.3.1 (Poppins font)
+Paste into Elementor > Custom HTML widget.
+-->
+<div id="asatechid-tools" class="ati">
+  <div class="ati-utility">
+    <div class="ati-lang" role="group" data-i18n-aria="lang_label" aria-label="Language">
+      <button type="button" data-lang="id">ID</button>
+      <button type="button" data-lang="en">EN</button>
+    </div>
+  </div>
+
+  <section class="ati-hero" id="ati-home">
+    <h1 data-i18n-html="hero_title_html">Tools for smarter<br class="ati-desktop-break"> IT decisions.</h1>
+    <p class="ati-hero-copy" data-i18n="hero_copy">Practical calculators for storage, networking, and IT infrastructure. Get a useful estimate before you plan your next installation.</p>
+    <div class="ati-search-wrap">
+      <span class="ati-search-icon" aria-hidden="true">⌕</span>
+      <input id="ati-search" type="search" data-i18n-placeholder="search_placeholder" data-i18n-aria="search_aria" placeholder="Search tools, e.g. RAID, CCTV, subnet..." aria-label="Search tools">
+      <kbd>⌘ K</kbd>
+    </div>
+    <div class="ati-hero-meta">
+      <span><span class="ati-mini-check">✓</span> <span data-i18n="meta_free">Free to use</span></span>
+      <span><span class="ati-mini-check">✓</span> <span data-i18n="meta_instant">Instant calculations</span></span>
+      <span><span class="ati-mini-check">✓</span> <span data-i18n="meta_noaccount">No account required</span></span>
+    </div>
+  </section>
+
+  <section class="ati-featured" aria-label="Featured calculator">
+    <div class="ati-feature-copy">
+      <div class="ati-eyebrow"><span data-i18n="featured_eyebrow">FEATURED TOOL</span> <span class="ati-pill" data-i18n="featured_pill">POPULAR</span></div>
+      <h2 id="ati-featured-title">CCTV Storage Calculator</h2>
+      <p id="ati-featured-copy">Estimate the storage capacity required for your surveillance system based on camera count, bitrate, and retention period.</p>
+      <button class="ati-button ati-button-primary" data-open-tool="cctv"><span data-i18n="featured_cta">Calculate storage</span> <span aria-hidden="true">→</span></button>
+      <div class="ati-feature-note" data-i18n="featured_note">Designed for early planning. Real capacity may differ depending on recording settings and extra load on the recorder.</div>
+    </div>
+    <div class="ati-feature-demo">
+      <div class="ati-demo-head"><span class="ati-window-dots"><i></i><i></i><i></i></span><span data-i18n="demo_title">STORAGE ESTIMATE</span><span class="ati-live" data-i18n="demo_live">LIVE PREVIEW</span></div>
+      <div class="ati-demo-result"><div><span class="ati-muted-label" data-i18n="demo_est">Estimated capacity</span><strong id="ati-feature-number">5.18 <small>TB</small></strong></div><span class="ati-storage-icon">▤</span></div>
+      <div class="ati-demo-bars">
+        <div><span data-i18n="demo_cameras">Camera streams</span><b data-i18n="demo_cameras_val">16 cameras</b></div>
+        <div class="ati-progress"><span style="width:72%"></span></div>
+        <div><span data-i18n="demo_retention">Storage period</span><b data-i18n="demo_retention_val">30 days</b></div>
+        <div class="ati-progress"><span style="width:85%"></span></div>
+      </div>
+      <div class="ati-demo-foot" data-i18n="demo_foot">Instant estimate · No sign-up</div>
+    </div>
+  </section>
+
+  <section class="ati-directory" id="ati-tool-directory">
+    <div class="ati-section-heading">
+      <div>
+        <div class="ati-eyebrow" data-i18n="dir_eyebrow">THE TOOLBOX</div>
+        <h2 data-i18n="dir_title">Find the right tool.</h2>
+        <p data-i18n="dir_copy">Useful utilities for planning, calculating, and comparing IT requirements.</p>
+      </div>
+      <span class="ati-count" id="ati-count">12 tools</span>
+    </div>
+    <div class="ati-filters" role="group" aria-label="Filter tools">
+      <button class="ati-filter active" data-filter="all"><span data-i18n="filter_all">All tools</span> <span class="ati-filter-num">12</span></button>
+      <button class="ati-filter" data-filter="storage" data-i18n="filter_storage">Storage</button>
+      <button class="ati-filter" data-filter="networking" data-i18n="filter_networking">Networking</button>
+      <button class="ati-filter" data-filter="infrastructure" data-i18n="filter_infrastructure">Infrastructure</button>
+      <button class="ati-filter" data-filter="planning" data-i18n="filter_planning">Planning</button>
+    </div>
+    <div class="ati-tool-grid" id="ati-tool-grid"></div>
+    <div class="ati-empty" id="ati-empty" hidden data-i18n="empty">No tools match your search. Try a different keyword or category.</div>
+  </section>
+
+  <section class="ati-about" id="ati-about">
+    <div class="ati-about-icon">i</div>
+    <div><h3 data-i18n="about_title">Useful estimates. Clear assumptions.</h3><p data-i18n="about_copy">These tools help with early planning and learning. Results are estimates, not a replacement for vendor specifications, an on-site survey, or professional system design. Always check device compatibility and operating needs before buying or installing.</p></div>
+  </section>
+
+  <section class="ati-contact-panel" id="ati-contact">
+    <div><div class="ati-eyebrow" data-i18n="contact_eyebrow">NEED A HAND?</div><h2 data-i18n="contact_title">Planning a real installation?</h2><p data-i18n="contact_copy">Use the calculators as a starting point, then discuss your requirements with the AsaTechID team.</p></div>
+    <a class="ati-button ati-button-primary" href="https://asatechid.com/contact/" target="_blank" rel="noopener"><span data-i18n="contact_cta">Contact AsaTechID</span> <span aria-hidden="true">↗</span></a>
+  </section>
+
+  <div class="ati-modal" id="ati-modal" aria-hidden="true">
+    <div class="ati-modal-backdrop" data-close-modal></div>
+    <section class="ati-modal-panel" role="dialog" aria-modal="true" aria-labelledby="ati-modal-title">
+      <div class="ati-modal-head">
+        <div><div class="ati-eyebrow" id="ati-modal-category">CALCULATOR</div><h2 id="ati-modal-title">Tool</h2></div>
+        <button class="ati-close" id="ati-close" type="button" data-i18n-aria="close_aria" aria-label="Close calculator" data-close-modal>×</button>
+      </div>
+      <p class="ati-modal-description" id="ati-modal-description"></p>
+      <div class="ati-calculator-body" id="ati-calculator-body"></div>
+      <div class="ati-modal-footer">
+        <span data-i18n="modal_footer_note">Results are estimates. Check your needs before installation.</span>
+        <button class="ati-button ati-button-secondary" type="button" id="ati-reset" data-i18n="modal_reset">Reset inputs</button>
+      </div>
+    </section>
+  </div>
+  <div class="ati-toast" id="ati-toast" role="status" aria-live="polite"></div>
+</div>
+
+<style>
+#asatechid-tools.ati{--ati-bg:#fff;--ati-panel:#fff;--ati-soft:#f7f8fa;--ati-border:#e5e7eb;--ati-text:#111827;--ati-muted:#6b7280;--ati-blue:#2563eb;--ati-blue-hover:#1d4ed8;--ati-blue-soft:#eff6ff;--ati-radius:12px;color:var(--ati-text);background:var(--ati-bg);font-family:"Poppins",sans-serif;font-size:15px;line-height:1.55;max-width:1240px;margin:0 auto;overflow:hidden}
+#asatechid-tools *{box-sizing:border-box}
+#asatechid-tools button,#asatechid-tools input,#asatechid-tools select{font:inherit}
+#asatechid-tools button{cursor:pointer}
+#asatechid-tools a{color:inherit;text-decoration:none}
+#asatechid-tools .ati-utility{display:flex;justify-content:flex-end;padding:16px 28px 0}
+#asatechid-tools .ati-lang{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--ati-border);border-radius:999px;background:#fff;box-shadow:0 1px 2px #1118270a;flex:0 0 auto}
+#asatechid-tools .ati-lang button{border:0;background:transparent;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;color:#6b7280;letter-spacing:.5px;transition:background .15s,color .15s}
+#asatechid-tools .ati-lang button:hover{color:#111827;background:var(--ati-soft)}
+#asatechid-tools .ati-lang button.active{background:#111827;color:#fff}
+#asatechid-tools .ati-hero{padding:40px 28px 36px;max-width:850px;margin:0 auto;text-align:center}
+#asatechid-tools .ati-eyebrow{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:750;letter-spacing:1.25px;color:#6b7280;text-transform:uppercase}
+#asatechid-tools .ati-hero .ati-eyebrow{justify-content:center}
+#asatechid-tools .ati-status-dot{width:7px;height:7px;background:#16a34a;border-radius:50%;display:inline-block}
+#asatechid-tools .ati-hero h1{font-size:clamp(38px,5.5vw,64px);letter-spacing:-3.2px;line-height:1.05;margin:22px 0 18px;font-weight:760}
+#asatechid-tools .ati-hero-copy{font-size:16px;line-height:1.8;color:var(--ati-muted);max-width:620px;margin:0 auto}
+#asatechid-tools .ati-search-wrap{height:52px;max-width:590px;margin:28px auto 18px;display:flex;align-items:center;gap:12px;padding:0 14px;border:1px solid #d1d5db;border-radius:10px;box-shadow:0 2px 4px #11182708;text-align:left;background:#fff}
+#asatechid-tools .ati-search-wrap:focus-within{border-color:#93b4fc;box-shadow:0 0 0 3px #2563eb16}
+#asatechid-tools .ati-search-icon{font-size:25px;color:#9ca3af;transform:rotate(-20deg)}
+#asatechid-tools .ati-search-wrap input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ati-text);font-size:13px}
+#asatechid-tools .ati-search-wrap kbd{font-size:10px;color:#9ca3af;border:1px solid var(--ati-border);border-radius:5px;padding:3px 6px;white-space:nowrap}
+#asatechid-tools .ati-hero-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;color:#6b7280;font-size:11px}
+#asatechid-tools .ati-mini-check{color:#16a34a;font-weight:800;margin-right:5px}
+#asatechid-tools .ati-featured{margin:26px 28px 74px;border:1px solid var(--ati-border);border-radius:16px;display:grid;grid-template-columns:1.1fr .9fr;overflow:hidden;background:linear-gradient(115deg,#fbfdff 0%,#fff 58%)}
+#asatechid-tools .ati-feature-copy{padding:36px 38px}
+#asatechid-tools .ati-pill{font-size:9px;letter-spacing:.5px;padding:3px 7px;background:var(--ati-blue-soft);color:var(--ati-blue);border-radius:5px}
+#asatechid-tools .ati-feature-copy h2{font-size:30px;line-height:1.2;letter-spacing:-1.2px;margin:18px 0 12px}
+#asatechid-tools .ati-feature-copy p{max-width:460px;color:var(--ati-muted);font-size:13px;line-height:1.8;margin:0 0 22px}
+#asatechid-tools .ati-button{display:inline-flex;align-items:center;justify-content:center;gap:16px;border-radius:8px;padding:11px 15px;font-size:12px;font-weight:650;border:1px solid transparent;transition:background .15s,border-color .15s,transform .15s}
+#asatechid-tools .ati-button:hover{transform:translateY(-1px)}
+#asatechid-tools .ati-button-primary{background:#111827;color:#fff;border-color:#111827}
+#asatechid-tools .ati-button-primary:hover{background:#252f40}
+#asatechid-tools .ati-button-secondary{background:#fff;border-color:var(--ati-border);color:var(--ati-text)}
+#asatechid-tools .ati-button-secondary:hover{background:var(--ati-soft)}
+#asatechid-tools .ati-feature-note{margin-top:18px;font-size:10px;color:#9ca3af;max-width:430px}
+#asatechid-tools .ati-feature-demo{margin:20px;background:#fff;border:1px solid var(--ati-border);border-radius:12px;padding:20px;align-self:stretch;box-shadow:0 8px 24px #11182708}
+#asatechid-tools .ati-demo-head{display:flex;align-items:center;gap:10px;padding-bottom:16px;border-bottom:1px solid #f0f1f3;font-size:9px;letter-spacing:.8px;color:#9ca3af;font-weight:750}
+#asatechid-tools .ati-window-dots{display:flex;gap:4px}
+#asatechid-tools .ati-window-dots i{display:block;width:6px;height:6px;border-radius:50%;background:#d1d5db}
+#asatechid-tools .ati-live{margin-left:auto;color:#16a34a;letter-spacing:.5px}
+#asatechid-tools .ati-demo-result{display:flex;justify-content:space-between;align-items:center;padding:24px 0 18px}
+#asatechid-tools .ati-muted-label{display:block;font-size:11px;color:var(--ati-muted);margin-bottom:5px}
+#asatechid-tools .ati-demo-result strong{font-size:36px;letter-spacing:-1.8px;line-height:1}
+#asatechid-tools .ati-demo-result strong small{font-size:15px;letter-spacing:0;color:#6b7280}
+#asatechid-tools .ati-storage-icon{display:grid;place-items:center;width:46px;height:46px;background:var(--ati-blue-soft);color:var(--ati-blue);border-radius:10px;font-size:26px}
+#asatechid-tools .ati-demo-bars>div:not(.ati-progress){display:flex;justify-content:space-between;font-size:10px;color:#6b7280;margin:13px 0 7px}
+#asatechid-tools .ati-demo-bars b{font-weight:650;color:#374151}
+#asatechid-tools .ati-progress{height:5px;background:#f3f4f6;border-radius:20px;overflow:hidden}
+#asatechid-tools .ati-progress span{display:block;height:100%;background:#2563eb;border-radius:20px}
+#asatechid-tools .ati-demo-foot{margin-top:20px;padding-top:14px;border-top:1px solid #f0f1f3;font-size:10px;color:#6b7280}
+#asatechid-tools .ati-check-circle{display:inline-grid;place-items:center;border-radius:50%;width:16px;height:16px;background:#dcfce7;color:#15803d;margin-right:6px;font-size:10px}
+#asatechid-tools .ati-directory{padding:0 28px 70px}
+#asatechid-tools .ati-section-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px}
+#asatechid-tools .ati-section-heading h2{font-size:32px;letter-spacing:-1.4px;line-height:1.2;margin:10px 0 8px}
+#asatechid-tools .ati-section-heading p{margin:0;color:var(--ati-muted);font-size:13px}
+#asatechid-tools .ati-count{font-size:11px;color:#6b7280;border:1px solid var(--ati-border);padding:6px 9px;border-radius:7px;white-space:nowrap}
+#asatechid-tools .ati-filters{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+#asatechid-tools .ati-filter{border:1px solid transparent;border-radius:7px;padding:8px 12px;background:transparent;color:#6b7280;font-size:11px}
+#asatechid-tools .ati-filter:hover{background:var(--ati-soft);color:var(--ati-text)}
+#asatechid-tools .ati-filter.active{background:#111827;color:#fff}
+#asatechid-tools .ati-filter .ati-filter-num{margin-left:5px;color:#d1d5db}
+#asatechid-tools .ati-tool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#asatechid-tools .ati-tool-card{min-width:0;min-height:205px;text-align:left;display:flex;flex-direction:column;align-items:flex-start;border:1px solid var(--ati-border);background:#fff;border-radius:11px;padding:19px;transition:border-color .15s,box-shadow .15s,transform .15s;color:var(--ati-text)}
+#asatechid-tools .ati-tool-card:hover{border-color:#b8c8e7;box-shadow:0 8px 20px #11182708;transform:translateY(-2px)}
+#asatechid-tools .ati-card-icon{display:grid;place-items:center;width:36px;height:36px;background:#f3f6fb;border:1px solid #e7edf6;border-radius:9px;color:#1d4ed8;font-size:21px;margin-bottom:15px}
+#asatechid-tools .ati-card-category{font-size:9px;letter-spacing:1px;color:#9ca3af;font-weight:750;margin-bottom:6px}
+#asatechid-tools .ati-tool-card strong{font-size:14px;letter-spacing:-.2px;font-weight:700;margin-bottom:7px}
+#asatechid-tools .ati-card-desc{font-size:11px;line-height:1.7;color:#6b7280;max-width:290px}
+#asatechid-tools .ati-card-link{margin-top:auto;padding-top:17px;font-size:10px;color:#374151;font-weight:650}
+#asatechid-tools .ati-card-link b{color:var(--ati-blue);margin-left:5px}
+#asatechid-tools .ati-empty{padding:30px;text-align:center;color:var(--ati-muted);border:1px dashed var(--ati-border);border-radius:10px;font-size:13px}
+#asatechid-tools .ati-about{display:flex;gap:15px;margin:0 28px 52px;background:#f9fafb;border:1px solid var(--ati-border);padding:22px;border-radius:12px}
+#asatechid-tools .ati-about-icon{flex:0 0 28px;display:grid;place-items:center;width:28px;height:28px;border:1px solid #d1d5db;border-radius:50%;font-weight:700;color:#6b7280}
+#asatechid-tools .ati-about h3{font-size:14px;margin:0 0 6px;letter-spacing:-.2px}
+#asatechid-tools .ati-about p{font-size:11px;line-height:1.8;color:#6b7280;margin:0;max-width:950px}
+#asatechid-tools .ati-contact-panel{margin:0 28px 42px;padding:28px 30px;border-radius:14px;background:#111827;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px}
+#asatechid-tools .ati-contact-panel .ati-eyebrow{color:#9ca3af}
+#asatechid-tools .ati-contact-panel h2{font-size:24px;letter-spacing:-.8px;margin:9px 0 7px}
+#asatechid-tools .ati-contact-panel p{font-size:12px;color:#d1d5db;line-height:1.7;margin:0;max-width:540px}
+#asatechid-tools .ati-contact-panel .ati-button-primary{background:#fff;color:#111827;border-color:#fff;white-space:nowrap}
+#asatechid-tools .ati-contact-panel .ati-button-primary:hover{background:#e5e7eb}
+#asatechid-tools .ati-modal{display:none;position:fixed;inset:0;z-index:999999;align-items:center;justify-content:center;padding:20px}
+#asatechid-tools .ati-modal.open{display:flex}
+#asatechid-tools .ati-modal-backdrop{position:absolute;inset:0;background:rgba(15,23,42,.58);backdrop-filter:blur(2px)}
+#asatechid-tools .ati-modal-panel{position:relative;z-index:1;width:min(720px,100%);max-height:min(88vh,900px);overflow:auto;background:#fff;border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 24px 80px #0003;padding:26px}
+#asatechid-tools .ati-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}
+#asatechid-tools .ati-modal-head h2{font-size:27px;letter-spacing:-1px;line-height:1.2;margin:9px 0 0}
+#asatechid-tools .ati-close{border:1px solid var(--ati-border);background:#fff;border-radius:8px;width:35px;height:35px;font-size:23px;color:#6b7280;line-height:1}
+#asatechid-tools .ati-modal-description{font-size:12px;line-height:1.8;color:#6b7280;margin:13px 0 22px;max-width:600px}
+#asatechid-tools .ati-calculator-body{border-top:1px solid #f0f1f3;padding-top:20px}
+#asatechid-tools .ati-mode{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid var(--ati-border)}
+#asatechid-tools .ati-mode-switch{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--ati-border);border-radius:999px;background:var(--ati-soft)}
+#asatechid-tools .ati-mode-switch button{border:0;background:transparent;border-radius:999px;padding:6px 13px;font-size:11px;font-weight:700;color:#6b7280;transition:background .15s,color .15s}
+#asatechid-tools .ati-mode-switch button:hover{color:#111827}
+#asatechid-tools .ati-mode-switch button.active{background:#111827;color:#fff}
+#asatechid-tools .ati-mode-note{font-size:10.5px;color:#9ca3af}
+#asatechid-tools .ati-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+#asatechid-tools .ati-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+#asatechid-tools .ati-field label{font-size:11px;font-weight:650;color:#374151}
+#asatechid-tools .ati-field input,#asatechid-tools .ati-field select{width:100%;min-height:42px;border:1px solid #d1d5db;border-radius:8px;padding:9px 10px;background:#fff;color:#111827;outline:none;font-size:12px}
+#asatechid-tools .ati-field input:focus,#asatechid-tools .ati-field select:focus{border-color:#93b4fc;box-shadow:0 0 0 3px #2563eb16}
+#asatechid-tools .ati-field small{font-size:10px;color:#9ca3af;line-height:1.5}
+#asatechid-tools .ati-result-box{margin-top:20px;border:1px solid #dbeafe;background:#f8fbff;border-radius:11px;padding:18px}
+#asatechid-tools .ati-result-title{font-size:10px;letter-spacing:.9px;text-transform:uppercase;font-weight:750;color:#6b7280;margin-bottom:9px}
+#asatechid-tools .ati-result-main{font-size:32px;line-height:1.2;letter-spacing:-1.2px;font-weight:760;color:#111827}
+#asatechid-tools .ati-result-main small{font-size:13px;letter-spacing:0;font-weight:600;color:#6b7280}
+#asatechid-tools .ati-result-sub{font-size:11px;color:#6b7280;line-height:1.7;margin-top:8px}
+#asatechid-tools .ati-result-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:15px}
+#asatechid-tools .ati-result-item{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:10px}
+#asatechid-tools .ati-result-item span{display:block;font-size:10px;color:#6b7280;margin-bottom:4px}
+#asatechid-tools .ati-result-item strong{font-size:13px;overflow-wrap:anywhere}
+#asatechid-tools .ati-calc-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+#asatechid-tools .ati-modal-footer{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:20px;padding-top:15px;border-top:1px solid #f0f1f3}
+#asatechid-tools .ati-modal-footer>span{font-size:10px;line-height:1.6;color:#9ca3af;max-width:390px}
+#asatechid-tools .ati-toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#111827;color:#fff;padding:10px 15px;border-radius:9px;font-size:12px;z-index:1000000;transition:opacity .2s,transform .2s;box-shadow:0 8px 20px #0002}
+#asatechid-tools .ati-toast.show{opacity:1;transform:translate(-50%,0)}
+#asatechid-tools [hidden]{display:none!important}
+@media(max-width:850px){#asatechid-tools .ati-utility{padding:14px 20px 0}#asatechid-tools .ati-lang button{padding:6px 12px}#asatechid-tools .ati-featured{margin-left:20px;margin-right:20px}#asatechid-tools .ati-feature-copy{padding:28px}#asatechid-tools .ati-feature-demo{margin:14px;padding:16px}#asatechid-tools .ati-directory{padding-left:20px;padding-right:20px}#asatechid-tools .ati-tool-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#asatechid-tools .ati-about,#asatechid-tools .ati-contact-panel{margin-left:20px;margin-right:20px}}
+@media(max-width:600px){#asatechid-tools .ati-utility{justify-content:center;padding:14px 15px 0}#asatechid-tools .ati-lang button{padding:6px 12px;font-size:10px}#asatechid-tools .ati-hero{padding:30px 17px 26px}#asatechid-tools .ati-hero h1{font-size:43px;letter-spacing:-2.4px}#asatechid-tools .ati-hero-copy{font-size:13px}#asatechid-tools .ati-hero-meta{gap:9px 13px;font-size:10px}#asatechid-tools .ati-search-wrap kbd{display:none}#asatechid-tools .ati-featured{grid-template-columns:1fr;margin:22px 15px 54px}#asatechid-tools .ati-feature-copy{padding:25px 22px 20px}#asatechid-tools .ati-feature-copy h2{font-size:26px}#asatechid-tools .ati-feature-demo{margin:0 12px 12px;padding:16px}#asatechid-tools .ati-directory{padding:0 15px 48px}#asatechid-tools .ati-section-heading{align-items:flex-start;flex-wrap:wrap}#asatechid-tools .ati-section-heading h2{font-size:27px}#asatechid-tools .ati-section-heading p{max-width:280px;font-size:12px}#asatechid-tools .ati-count{font-size:10px}#asatechid-tools .ati-tool-grid{grid-template-columns:1fr;gap:9px}#asatechid-tools .ati-tool-card{min-height:0;padding:16px;display:grid;grid-template-columns:38px 1fr;column-gap:12px;align-items:start}#asatechid-tools .ati-card-icon{grid-row:1 / span 3;margin:0}#asatechid-tools .ati-card-category{grid-column:2;margin:0 0 3px}#asatechid-tools .ati-tool-card strong{grid-column:2;margin:0 0 4px}#asatechid-tools .ati-card-desc{grid-column:2}#asatechid-tools .ati-card-link{grid-column:2;padding-top:9px}#asatechid-tools .ati-about{margin:0 15px 30px;padding:17px}#asatechid-tools .ati-contact-panel{margin:0 15px 28px;padding:22px;align-items:flex-start;flex-direction:column}#asatechid-tools .ati-contact-panel h2{font-size:22px}#asatechid-tools .ati-modal{padding:12px}#asatechid-tools .ati-modal-panel{padding:20px;border-radius:12px}#asatechid-tools .ati-mode{gap:8px}#asatechid-tools .ati-mode-note{width:100%}#asatechid-tools .ati-form-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){#asatechid-tools *,#asatechid-tools *:before,#asatechid-tools *:after{transition:none!important;scroll-behavior:auto!important}}
+.elementor-editor-active #asatechid-tools .ati-modal{display:none!important}
+.elementor-editor-active #asatechid-tools .ati-toast{display:none!important}
+</style>
+
+<script>
+(function(){
+  "use strict";
+  const root=document.getElementById("asatechid-tools");
+  if(!root||root.dataset.atiInit==="1") return;
+  root.dataset.atiInit="1";
+
+  /* ---------- i18n core ---------- */
+  const I={
+    en:{
+      lang_label:"Language",search_aria:"Search tools",close_aria:"Close calculator",mode_label:"Calculation mode",mode_simple:"Simple",mode_advanced:"Advanced",mode_note:"Simple mode uses common values for hidden options.",
+      hero_eyebrow:"ASATECHID / FREE IT UTILITIES",
+      hero_title_html:'Tools for smarter<br class="ati-desktop-break"> IT decisions.',
+      hero_copy:"Practical calculators for storage, networking, and IT infrastructure. Get a useful estimate before you plan your next installation.",
+      search_placeholder:"Search tools, e.g. RAID, CCTV, subnet...",
+      meta_free:"Free to use",meta_instant:"Instant calculations",meta_noaccount:"No account required",
+      featured_eyebrow:"FEATURED TOOL",featured_pill:"POPULAR",featured_cta:"Calculate storage",
+      featured_note:"Designed for early planning. Real capacity may differ depending on recording settings and extra load on the recorder.",
+      demo_title:"STORAGE ESTIMATE",demo_live:"LIVE PREVIEW",demo_est:"Estimated capacity",
+      demo_cameras:"Cameras",demo_cameras_val:"16 cameras",demo_retention:"Storage period",demo_retention_val:"30 days",
+      demo_foot:"Instant estimate · No sign-up",
+      dir_eyebrow:"THE TOOLBOX",dir_title:"Find the right tool.",
+      dir_copy:"Useful utilities for planning, calculating, and comparing IT requirements.",
+      filter_all:"All tools",filter_storage:"Storage",filter_networking:"Networking",filter_infrastructure:"Infrastructure",filter_planning:"Planning",
+      empty:"No tools match your search. Try a different keyword or category.",
+      about_title:"Useful estimates. Clear assumptions.",
+      about_copy:"These tools help with early planning and learning. Results are estimates, not a replacement for vendor specifications, an on-site survey, or professional system design. Always check device compatibility and operating needs before buying or installing.",
+      contact_eyebrow:"NEED A HAND?",contact_title:"Planning a real installation?",
+      contact_copy:"Use the calculators as a starting point, then discuss your requirements with the AsaTechID team.",
+      contact_cta:"Contact AsaTechID",
+      modal_footer_note:"Results are estimates. Check your needs before installation.",modal_reset:"Reset inputs",
+      calc_button:"Calculate result",copy_result:"Copy result",download_txt:"Download TXT",
+      result_title:"YOUR RESULT",checklist_title:"Recommended checklist",
+      count_tools:"%d tools",unit_prefix:"Unit: ",
+      toast_copied:"Result copied to clipboard.",toast_copy_fail:"Copy unavailable in this browser.",toast_check_input:"Please check your inputs.",
+      err_value:"Check the value for “%s”.",
+      cat_storage:"STORAGE",cat_networking:"NETWORKING",cat_infrastructure:"INFRASTRUCTURE",cat_planning:"PLANNING"
+    },
+    id:{
+      lang_label:"Bahasa",search_aria:"Cari alat",close_aria:"Tutup kalkulator",mode_label:"Mode perhitungan",mode_simple:"Sederhana",mode_advanced:"Lanjutan",mode_note:"Mode sederhana memakai nilai umum untuk opsi yang disembunyikan.",
+      hero_eyebrow:"ASATECHID / UTILITAS IT GRATIS",
+      hero_title_html:'Alat untuk keputusan<br class="ati-desktop-break"> IT yang lebih cerdas.',
+      hero_copy:"Kalkulator praktis untuk penyimpanan, jaringan, dan infrastruktur TI. Dapatkan perkiraan yang berguna sebelum merencanakan pemasangan berikutnya.",
+      search_placeholder:"Cari alat, mis. RAID, CCTV, subnet...",
+      meta_free:"Gratis digunakan",meta_instant:"Perhitungan instan",meta_noaccount:"Tanpa akun",
+      featured_eyebrow:"ALAT UNGGULAN",featured_pill:"POPULER",featured_cta:"Hitung penyimpanan",
+      featured_note:"Dirancang untuk perencanaan awal. Kapasitas sebenarnya bisa berbeda tergantung pengaturan rekaman dan beban tambahan pada alat perekam.",
+      demo_title:"PERKIRAAN PENYIMPANAN",demo_live:"PRATINJAU LANGSUNG",demo_est:"Perkiraan kapasitas",
+      demo_cameras:"Jumlah kamera",demo_cameras_val:"16 kamera",demo_retention:"Lama penyimpanan",demo_retention_val:"30 hari",
+      demo_foot:"Hasil langsung · Tanpa daftar",
+      dir_eyebrow:"DAFTAR ALAT",dir_title:"Temukan alat yang tepat.",
+      dir_copy:"Alat bantu untuk merencanakan, menghitung, dan membandingkan kebutuhan TI.",
+      filter_all:"Semua alat",filter_storage:"Penyimpanan",filter_networking:"Jaringan",filter_infrastructure:"Infrastruktur",filter_planning:"Perencanaan",
+      empty:"Tidak ada alat yang cocok. Coba kata kunci atau kategori lain.",
+      about_title:"Perkiraan yang berguna. Asumsi yang jelas.",
+      about_copy:"Alat ini membantu perencanaan awal dan belajar. Hasilnya hanya perkiraan, bukan pengganti spesifikasi vendor, survei lokasi, atau desain sistem profesional. Selalu periksa kecocokan perangkat dan kebutuhan operasional sebelum membeli atau memasang.",
+      contact_eyebrow:"BUTUH BANTUAN?",contact_title:"Merencanakan pemasangan sungguhan?",
+      contact_copy:"Gunakan kalkulator sebagai titik awal, lalu diskusikan kebutuhan Anda dengan tim AsaTechID.",
+      contact_cta:"Hubungi AsaTechID",
+      modal_footer_note:"Hasil hanya perkiraan. Periksa kebutuhan sebelum pemasangan.",modal_reset:"Atur ulang isian",
+      calc_button:"Hitung hasil",copy_result:"Salin hasil",download_txt:"Unduh TXT",
+      result_title:"HASIL PERHITUNGAN ANDA",checklist_title:"Daftar periksa yang disarankan",
+      count_tools:"%d alat",unit_prefix:"Satuan: ",
+      toast_copied:"Hasil sudah disalin. Tinggal tempel di dokumen Anda.",toast_copy_fail:"Browser ini tidak mendukung fitur salin.",toast_check_input:"Periksa isian Anda.",
+      err_value:"Periksa isian “%s”.",
+      cat_storage:"PENYIMPANAN",cat_networking:"JARINGAN",cat_infrastructure:"INFRASTRUKTUR",cat_planning:"PERENCANAAN"
+    }
+  };
+
+  function getSaved(){
+    try{return localStorage.getItem("ati_lang");}catch(e){return null;}
+  }
+  let lang=getSaved()||(((navigator.language||"").toLowerCase().indexOf("id")===0)?"id":"en");
+  if(!I[lang]) lang="en";
+  const t=k=>(I[lang]&&I[lang][k]!=null)?I[lang][k]:((I.en[k]!=null)?I.en[k]:k);
+  function p(o){
+    if(o==null)return "";
+    if(typeof o!=="object")return String(o);
+    if(o[lang]!=null)return o[lang];
+    return o.en!=null?o.en:"";
+  }
+
+  const $=(s,ctx=root)=>ctx.querySelector(s);
+  const $$=(s,ctx=root)=>Array.from(ctx.querySelectorAll(s));
+  const modal=$("#ati-modal"),body=$("#ati-calculator-body"),title=$("#ati-modal-title"),
+        desc=$("#ati-modal-description"),category=$("#ati-modal-category"),
+        grid=$("#ati-tool-grid"),search=$("#ati-search");
+  let activeTool=null,lastFocus=null,activeValues={},mode="simple";
+  try{if(localStorage.getItem("ati_mode")==="advanced")mode="advanced";}catch(e){}
+
+  /* ---------- shared option lists ---------- */
+  const OPT_RAID=[["0",{en:"RAID 0",id:"RAID 0"}],["1",{en:"RAID 1 (two-disk copy)",id:"RAID 1 (salinan 2 disk)"}],["5",{en:"RAID 5",id:"RAID 5"}],["6",{en:"RAID 6",id:"RAID 6"}],["10",{en:"RAID 10",id:"RAID 10"}]];
+  const OPT_WORK=[["office",{en:"Office",id:"Kantor"}],["hybrid",{en:"Hybrid / remote",id:"Kantor + jarak jauh"}],["warehouse",{en:"Warehouse / industrial",id:"Gudang / industri"}],["retail",{en:"Shop / branch",id:"Toko / cabang"}]];
+  const OPT_NEEDS=[["mixed",{en:"General IT + networking",id:"TI umum + jaringan"}],["storage",{en:"Server / storage",id:"Server / penyimpanan"}],["cctv",{en:"CCTV / monitoring",id:"CCTV / pemantauan"}],["wifi",{en:"Wi-Fi / wireless",id:"Wi-Fi / nirkabel"}],["backup",{en:"Backup / recovery after a disaster",id:"Backup / pemulihan setelah musibah"}]];
+  const OPT_CRIT=[["low",{en:"Normal",id:"Biasa"}],["medium",{en:"Important for business",id:"Penting untuk bisnis"}],["high",{en:"Very important",id:"Sangat penting"}]];
+  function findOpt(list,val){const o=list.find(x=>String(x[0])===String(val));return o?p(o[1]):String(val);}
+
+  /* ---------- tool definitions ---------- */
+  const definitions={
+    cctv:{category:"storage",icon:"▤",search:"cctv storage surveillance hdd camera retention kamera pengawasan penyimpanan",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"CCTV Storage Calculator",id:"Kalkulator Penyimpanan CCTV"},
+      desc:{en:"Estimate how much storage you need for CCTV that records all the time or only when it detects movement. Use the average data rate from your camera or NVR spec for a better result.",
+            id:"Perkiraan ruang penyimpanan untuk rekaman CCTV terus-menerus atau hanya saat ada gerakan. Gunakan kecepatan data rata-rata dari spesifikasi kamera/NVR agar hasil lebih akurat."},
+      fields:[
+        {id:"cameras",type:"number",value:16,min:1,max:10000,step:1,label:{en:"Number of cameras",id:"Jumlah kamera"},unit:{en:"cameras",id:"kamera"}},
+        {id:"bitrate",type:"number",value:4,min:.1,max:1000,step:.1,label:{en:"Average data rate per camera",id:"Kecepatan data rata-rata per kamera"},unit:{en:"Mbps",id:"Mbps"},help:{en:"Use the average data rate, not just the camera resolution.",id:"Gunakan kecepatan data rata-rata, bukan hanya ukuran resolusi kamera."}},
+        {adv:true,id:"hours",type:"number",value:24,min:.1,max:24,step:.5,label:{en:"Recording hours per day",id:"Jam merekam per hari"},unit:{en:"hours/day",id:"jam/hari"}},
+        {id:"days",type:"number",value:30,min:1,max:3650,step:1,label:{en:"Storage period",id:"Lama penyimpanan"},unit:{en:"days",id:"hari"}},
+        {adv:true,id:"reserve",type:"number",value:15,min:0,max:80,step:1,label:{en:"Capacity reserve",id:"Cadangan kapasitas"},unit:{en:"%",id:"%"}},
+        {adv:true,id:"motion",type:"number",value:100,min:1,max:100,step:1,label:{en:"Share of time recording",id:"Persentase waktu merekam"},unit:{en:"%",id:"%"},help:{en:"Recording all the time = 100%. Movement-only recording is usually lower and depends on the scene.",id:"Rekaman terus-menerus = 100%. Rekaman hanya saat ada gerakan biasanya lebih sedikit, tergantung situasi."}}
+      ],
+      calc:v=>{const raw=v.cameras*v.bitrate*3600*v.hours*v.days/8/1e6*(v.motion/100);const total=raw/(1-v.reserve/100);
+        return result(fmt(total)+" TB",
+          {en:"Estimated storage, including reserve.",id:"Perkiraan penyimpanan, sudah termasuk cadangan."},
+          [[{en:"Recording data before reserve",id:"Data rekaman sebelum cadangan"},fmt(raw)+" TB"],
+           [{en:"With reserve",id:"Dengan cadangan"},fmt(total)+" TB"],
+           [{en:"Approx. number of 8 TB disks",id:"Perkiraan jumlah disk 8 TB"},Math.ceil(total/8)+" "+(lang==="id"?"disk":"drives")],
+           [{en:"Total camera data rate",id:"Total kecepatan data kamera"},fmt(v.cameras*v.bitrate)+" Mbps"]],
+          {en:"Uses decimal TB (1 TB = 1,000,000,000,000 bytes). Extra load on the recorder, audio, variable data rates, RAID, and manufacturer formatting can change how much space you really get.",
+           id:"Menggunakan TB desimal (1 TB = 1.000.000.000.000 byte). Beban tambahan pada alat perekam, audio, kecepatan data yang berubah-ubah, RAID, dan format pabrikan dapat mengubah kapasitas yang bisa dipakai."});}},
+
+    raid:{category:"storage",icon:"▦",search:"raid disk array usable capacity redundancy disk array kapasitas",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"RAID Calculator",id:"Kalkulator RAID"},
+      desc:{en:"Compare how much space you can actually use with equal-sized disks. Results depend on your controller or software; RAID is not a backup.",
+            id:"Bandingkan kapasitas yang bisa dipakai dari beberapa disk berukuran sama. Hasil RAID bergantung pada pengaturan perangkat atau software; RAID bukan pengganti backup."},
+      fields:[
+        {id:"level",type:"select",value:"5",options:OPT_RAID,label:{en:"RAID level",id:"Level RAID"}},
+        {id:"disks",type:"number",value:4,min:1,max:100,step:1,label:{en:"Number of disks",id:"Jumlah disk"},unit:{en:"disks",id:"disk"}},
+        {id:"capacity",type:"number",value:8,min:.1,max:1000,step:.1,label:{en:"Capacity per disk",id:"Kapasitas per disk"},unit:{en:"TB",id:"TB"}}
+      ],
+      calc:v=>{let n=Math.floor(v.disks),c=v.capacity,valid=true,why="",usable=0,tol=0;
+        if(v.level==="0"){valid=n>=2;usable=n*c;tol=0;why={en:"RAID 0 has no data protection; if one disk fails, all data can be lost.",id:"RAID 0 tidak punya cadangan data; jika satu disk rusak, semua data bisa hilang."};}
+        else if(v.level==="1"){valid=n>=2;usable=c;tol=n-1;why={en:"This estimate assumes two disks copy each other. With more than two disks, the real layout depends on your setup.",id:"Perkiraan ini menganggap 2 disk saling menyalin. Untuk lebih dari 2 disk, hasilnya tergantung pengaturan perangkat."};}
+        else if(v.level==="5"){valid=n>=3;usable=(n-1)*c;tol=1;why={en:"RAID 5 keeps working if one disk fails (under normal conditions).",id:"RAID 5 masih aman jika 1 disk rusak (dalam kondisi normal)."};}
+        else if(v.level==="6"){valid=n>=4;usable=(n-2)*c;tol=2;why={en:"RAID 6 keeps working if two disks fail (under normal conditions).",id:"RAID 6 masih aman jika 2 disk rusak (dalam kondisi normal)."};}
+        else{valid=n>=4&&n%2===0;usable=n/2*c;tol={en:"Depends on layout",id:"Tergantung susunan"};why={en:"RAID 10 needs an even number of disks (at least 4 here). How many disks can fail depends on which ones fail.",id:"RAID 10 memerlukan jumlah disk genap (minimal 4). Jumlah disk yang boleh rusak tergantung disk mana yang rusak."};}
+        if(!valid)return result({en:"Disk count not valid",id:"Jumlah disk tidak sesuai"},{en:"Choose a disk count that works with the selected RAID level.",id:"Sesuaikan jumlah disk dengan level RAID yang dipilih."},
+          [[{en:"Disks needed",id:"Jumlah disk yang diperlukan"},
+            (v.level==="0"||v.level==="1")?{en:"At least 2",id:"Minimal 2"}:v.level==="5"?{en:"At least 3",id:"Minimal 3"}:v.level==="6"?{en:"At least 4",id:"Minimal 4"}:{en:"Even number, at least 4",id:"Harus genap, minimal 4"}]],why);
+        return result(fmt(usable)+" TB",{en:"Estimated space you can use.",id:"Perkiraan kapasitas yang bisa dipakai."},
+          [[{en:"Total capacity of all disks",id:"Kapasitas total semua disk"},fmt(n*c)+" TB"],
+           [{en:"Space used for data protection",id:"Ruang untuk cadangan data"},fmt(n*c-usable)+" TB"],
+           [{en:"Disks that can fail safely",id:"Jumlah disk yang boleh rusak"},tol],
+           [{en:"Number of disks",id:"Jumlah disk"},String(n)]],why);}},
+
+    subnet:{category:"networking",icon:"⌘",search:"ip subnet ipv4 cidr network mask broadcast jaringan",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"IP Subnet Calculator",id:"Kalkulator Subnet IP"},
+      desc:{en:"Work out IPv4 network details from an IP address and a CIDR prefix. The special prefixes /31 and /32 are handled differently.",
+            id:"Hitung detail jaringan IPv4 dari alamat IP dan awalan (CIDR). Awalan khusus /31 dan /32 dihitung dengan cara berbeda."},
+      fields:[
+        {id:"ip",type:"text",value:"192.168.1.10",placeholder:"192.168.1.10",label:{en:"IPv4 address",id:"Alamat IPv4"}},
+        {id:"prefix",type:"number",value:24,min:0,max:32,step:1,label:{en:"CIDR prefix",id:"Awalan CIDR"},unit:{en:"/0–/32",id:"/0–/32"}}
+      ],
+      calc:v=>{const pp=v.ip.split(".");
+        if(pp.length!==4||pp.some(x=>!/^\d+$/.test(x)||+x<0||+x>255))
+          return result({en:"IPv4 address not valid",id:"Alamat IPv4 tidak benar"},{en:"Enter an IP address with four numbers, each from 0 to 255.",id:"Masukkan alamat IP dengan 4 angka, masing-masing 0–255."},[],{en:"Example: 192.168.1.10",id:"Contoh: 192.168.1.10"});
+        const ip=pp.reduce((a,x)=>(a*256+(+x))>>>0,0),pre=Math.floor(v.prefix),
+              mask=pre===0?0:(0xffffffff<<(32-pre))>>>0,net=(ip&mask)>>>0,bcast=(net|(~mask>>>0))>>>0;
+        const toIP=n=>[(n>>>24)&255,(n>>>16)&255,(n>>>8)&255,n&255].join(".");
+        const total=Math.pow(2,32-pre),special=pre===31||pre===32,hosts=pre===32?1:pre===31?2:Math.max(0,total-2);
+        let first=pre>=31?net:net+1,last=pre>=31?bcast:bcast-1;
+        return result(toIP(net)+"/"+pre,{en:"Network address and prefix.",id:"Alamat jaringan dan awalannya."},
+          [[{en:"Subnet mask",id:"Subnet mask"},toIP(mask)],
+           [{en:"Broadcast address",id:"Alamat broadcast"},toIP(bcast)],
+           [{en:"Total addresses",id:"Total alamat"},fmt(total)],
+           [{en:"Addresses you can use",id:"Alamat yang bisa dipakai"},fmt(hosts)],
+           [{en:"First address",id:"Alamat pertama"},toIP(first)],
+           [{en:"Last address",id:"Alamat terakhir"},toIP(last)]],
+          special?{en:"For /31 (a link between two devices) and /32 (a single address), the rules for how many addresses you can use are different. Check what your network equipment needs.",id:"Untuk /31 (hubungan dua perangkat) dan /32 (satu alamat), aturan jumlah alamat yang bisa dipakai berbeda. Sesuaikan dengan kebutuhan perangkat jaringan Anda."}
+                 :{en:"The number of addresses you can use does not include the network and broadcast addresses.",id:"Jumlah alamat yang bisa dipakai tidak termasuk alamat jaringan dan broadcast."});}},
+
+    bandwidth:{category:"networking",icon:"⇄",search:"bandwidth network upload download users jaringan pengguna",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"Bandwidth Calculator",id:"Kalkulator Kebutuhan Bandwidth"},
+      desc:{en:"Estimate how much network speed you need based on the number of devices. Enter the average speed per device and the percentage in use at the same time.",
+            id:"Perkirakan kebutuhan kecepatan jaringan dari jumlah perangkat. Isi kecepatan rata-rata tiap perangkat dan berapa persen yang dipakai bersamaan."},
+      fields:[
+        {id:"devices",type:"number",value:50,min:1,max:100000,step:1,label:{en:"Number of devices/users",id:"Jumlah perangkat/pengguna"},unit:{en:"devices",id:"perangkat"}},
+        {id:"perDevice",type:"number",value:5,min:.01,max:100000,step:.1,label:{en:"Average speed per device",id:"Kecepatan rata-rata per perangkat"},unit:{en:"Mbps",id:"Mbps"}},
+        {id:"simultaneous",type:"number",value:60,min:1,max:100,step:1,label:{en:"Use at the same time",id:"Dipakai bersamaan"},unit:{en:"%",id:"%"}},
+        {adv:true,id:"reserve",type:"number",value:25,min:0,max:300,step:5,label:{en:"Capacity reserve",id:"Cadangan kapasitas"},unit:{en:"%",id:"%"}}
+      ],
+      calc:v=>{const base=v.devices*v.perDevice*v.simultaneous/100,total=base*(1+v.reserve/100);
+        return result(fmt(total)+" Mbps",{en:"Estimated total network speed you need.",id:"Perkiraan total kecepatan jaringan yang disarankan."},
+          [[{en:"Estimated demand at the same time",id:"Perkiraan kebutuhan bersamaan"},fmt(base)+" Mbps"],
+           [{en:"With extra reserve",id:"Ditambah cadangan"},fmt(total)+" Mbps"],
+           [{en:"Equal to",id:"Setara dengan"},fmt(total/1000)+" Gbps"],
+           [{en:"Devices/users",id:"Perangkat/pengguna"},fmt(v.devices)]],
+          {en:"This is a planning estimate. Real demand depends on the apps in use, busy periods, upload and download speeds, Wi-Fi conditions, and your provider's limits.",
+           id:"Ini hanya perkiraan awal. Kebutuhan sebenarnya tergantung jenis aplikasi, jam sibuk, perbedaan kecepatan unggah/unduh, kondisi Wi-Fi, dan batas dari penyedia layanan."});}},
+
+    backup:{category:"storage",icon:"⟳",search:"backup storage retention full incremental daily growth cadangan",
+      openLabel:{en:"Open planner",id:"Buka perencana"},
+      title:{en:"Backup Storage Planner",id:"Perencana Ruang Backup"},
+      desc:{en:"A simple estimate for one full backup plus daily changed-data backups kept for a period. Adjust it to match how your backup software works.",
+            id:"Perkiraan sederhana untuk satu backup penuh ditambah backup perubahan harian yang disimpan selama beberapa waktu. Sesuaikan dengan cara kerja software backup Anda."},
+      fields:[
+        {id:"data",type:"number",value:5,min:.01,max:100000,step:.1,label:{en:"Protected data size",id:"Ukuran data yang dilindungi"},unit:{en:"TB",id:"TB"}},
+        {id:"change",type:"number",value:5,min:0,max:100,step:.5,label:{en:"Daily changed data",id:"Data berubah harian"},unit:{en:"%",id:"%"}},
+        {id:"days",type:"number",value:30,min:1,max:3650,step:1,label:{en:"Keep changed-data backups for",id:"Lama menyimpan backup perubahan"},unit:{en:"days",id:"hari"}},
+        {adv:true,id:"fulls",type:"number",value:2,min:1,max:100,step:1,label:{en:"Number of full backups kept",id:"Jumlah backup penuh yang disimpan"},unit:{en:"copies",id:"salinan"}},
+        {adv:true,id:"reserve",type:"number",value:20,min:0,max:200,step:5,label:{en:"Reserve",id:"Cadangan"},unit:{en:"%",id:"%"}}
+      ],
+      calc:v=>{const full=v.data*v.fulls,inc=v.data*v.change/100*v.days,raw=full+inc,total=raw*(1+v.reserve/100);
+        return result(fmt(total)+" TB",{en:"Estimated backup storage you need.",id:"Perkiraan ruang backup yang dibutuhkan."},
+          [[{en:"Size of all full backups",id:"Ukuran semua backup penuh"},fmt(full)+" TB"],
+           [{en:"Changed-data estimate",id:"Perkiraan data perubahan"},fmt(inc)+" TB"],
+           [{en:"Before adding reserve",id:"Sebelum tambahan cadangan"},fmt(raw)+" TB"],
+           [{en:"With reserve",id:"Dengan cadangan"},fmt(total)+" TB"]],
+          {en:"Does not include savings from removing duplicate data, compression, merged full backups, snapshot space, unchangeable copies, or backup catalog data. Check the result against your backup software.",
+           id:"Belum memperhitungkan penghematan dari penghapusan data ganda, kompresi, backup penuh gabungan, ruang snapshot, salinan yang tidak bisa diubah, atau data katalog backup. Cocokkan dengan software backup Anda."});}},
+
+    poe:{category:"networking",icon:"ϟ",search:"poe power switch budget camera access point daya",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"PoE Power Calculator",id:"Kalkulator Daya PoE"},
+      desc:{en:"Estimate the power needed by devices that get electricity through the network cable (PoE), then compare it with your switch's limit.",
+            id:"Perkirakan kebutuhan daya untuk perangkat yang mendapat listrik lewat kabel jaringan (PoE), lalu bandingkan dengan batas daya switch Anda."},
+      fields:[
+        {id:"devices",type:"number",value:16,min:1,max:10000,step:1,label:{en:"Number of PoE devices",id:"Jumlah perangkat PoE"},unit:{en:"devices",id:"perangkat"}},
+        {id:"watts",type:"number",value:12,min:.1,max:1000,step:.5,label:{en:"Average device power",id:"Daya rata-rata perangkat"},unit:{en:"W/device",id:"W/perangkat"}},
+        {adv:true,id:"reserve",type:"number",value:20,min:0,max:200,step:5,label:{en:"Power reserve",id:"Cadangan daya"},unit:{en:"%",id:"%"}},
+        {id:"budget",type:"number",value:0,min:0,max:100000,step:1,label:{en:"Switch power limit (optional)",id:"Batas daya switch (opsional)"},unit:{en:"W",id:"W"},help:{en:"Enter 0 if you do not know the switch limit yet.",id:"Isi 0 jika belum tahu batas daya switch."}}
+      ],
+      calc:v=>{const base=v.devices*v.watts,total=base*(1+v.reserve/100),has=v.budget>0,ok=has&&v.budget>=total;
+        return result(fmt(total)+" W",{en:"Estimated PoE power you need.",id:"Perkiraan daya PoE yang dibutuhkan."},
+          [[{en:"Estimated power used",id:"Perkiraan daya terpakai"},fmt(base)+" W"],
+           [{en:"Reserve",id:"Cadangan"},fmt(total-base)+" W"],
+           [{en:"Switch limit",id:"Batas daya switch"},has?fmt(v.budget)+" W":{en:"Not entered",id:"Belum diisi"}],
+           [{en:"Check result",id:"Hasil pengecekan"},!has?{en:"Enter a switch limit",id:"Isi batas daya switch"}:ok?{en:"Enough power",id:"Masih cukup"}:{en:"May not be enough",id:"Mungkin tidak cukup"}]],
+          {en:"Check the limit for each port and the switch's total power. PoE class, power lost in the cable, startup surges, and manufacturer limits can change the result.",
+           id:"Periksa batas daya tiap port dan total daya switch. Kelas PoE, kehilangan daya di kabel, lonjakan saat menyala, dan batas dari pabrikan dapat mengubah hasil."});}},
+
+    server:{category:"infrastructure",icon:"▣",search:"server capacity cpu ram workload estimator kapasitas",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"Server Needs Calculator",id:"Perkiraan Kebutuhan Server"},
+      desc:{en:"A first estimate that adds up the processor (CPU), memory (RAM), and storage needs of each workload. It is not a replacement for real usage measurements or vendor advice.",
+            id:"Perkiraan awal dengan menjumlahkan kebutuhan prosesor (CPU), memori (RAM), dan penyimpanan untuk setiap beban kerja. Bukan pengganti pengukuran pemakaian nyata atau saran vendor."},
+      fields:[
+        {id:"workloads",type:"number",value:10,min:1,max:10000,step:1,label:{en:"Number of workloads/VMs",id:"Jumlah beban kerja/VM"},unit:{en:"workloads",id:"beban kerja"}},
+        {id:"cpu",type:"number",value:2,min:.1,max:256,step:.5,label:{en:"vCPU per workload",id:"vCPU per beban kerja"},unit:{en:"vCPU",id:"vCPU"},help:{en:"vCPU = virtual processor core.",id:"vCPU = inti prosesor virtual."}},
+        {id:"ram",type:"number",value:4,min:.1,max:4096,step:.5,label:{en:"RAM per workload",id:"RAM per beban kerja"},unit:{en:"GB",id:"GB"}},
+        {id:"storage",type:"number",value:100,min:1,max:100000,step:10,label:{en:"Storage per workload",id:"Penyimpanan per beban kerja"},unit:{en:"GB",id:"GB"}},
+        {adv:true,id:"overhead",type:"number",value:30,min:0,max:300,step:5,label:{en:"Extra reserve",id:"Tambahan cadangan"},unit:{en:"%",id:"%"}}
+      ],
+      calc:v=>{const m=1+v.overhead/100,cpu=v.workloads*v.cpu*m,ram=v.workloads*v.ram*m,storage=v.workloads*v.storage*m;
+        return result(fmt(ram)+" GB RAM"+(lang==="id"?" (estimasi)":" (estimate)"),{en:"Starting needs, including extra reserve.",id:"Kebutuhan awal, sudah termasuk tambahan cadangan."},
+          [[{en:"Estimated vCPU",id:"Perkiraan vCPU"},fmt(cpu)+" vCPU"],
+           [{en:"Estimated RAM",id:"Perkiraan RAM"},fmt(ram)+" GB"],
+           [{en:"Estimated storage",id:"Perkiraan penyimpanan"},fmt(storage)+" GB"],
+           [{en:"Same as",id:"Sama dengan"},fmt(storage/1000)+" TB"]],
+          {en:"Does not include CPU sharing, automatic switching when a server fails, disk read/write speed (IOPS), busy-period usage, extra load from virtualization, or the type of workload. Measure real usage before buying hardware.",
+           id:"Belum memperhitungkan pembagian CPU berlebih, perpindahan otomatis saat server bermasalah, kecepatan baca/tulis disk (IOPS), pemakaian saat sibuk, beban sistem virtualisasi, dan jenis beban kerja. Ukur pemakaian nyata sebelum membeli perangkat."});}},
+
+    ups:{category:"infrastructure",icon:"▱",search:"ups runtime battery load watts backup power baterai",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"UPS Backup Time Calculator",id:"Perkiraan Waktu Cadangan UPS"},
+      desc:{en:"Estimate how long a UPS can keep supplying power, based on battery capacity and the connected load. Battery age, how the battery fades, device efficiency, and temperature can change the real result.",
+            id:"Perkirakan berapa lama UPS bisa menyuplai listrik berdasarkan kapasitas baterai dan daya yang terhubung. Usia baterai, cara baterai melemah, efisiensi alat, dan suhu dapat mengubah hasil nyata."},
+      fields:[
+        {id:"voltage",type:"number",value:24,min:1,max:1000,step:1,label:{en:"Battery voltage",id:"Tegangan baterai"},unit:{en:"V",id:"V"}},
+        {id:"ah",type:"number",value:18,min:.1,max:10000,step:.1,label:{en:"Battery capacity",id:"Kapasitas baterai"},unit:{en:"Ah",id:"Ah"}},
+        {id:"load",type:"number",value:300,min:1,max:100000,step:1,label:{en:"Connected power",id:"Daya terhubung"},unit:{en:"W",id:"W"}},
+        {adv:true,id:"efficiency",type:"number",value:85,min:1,max:100,step:1,label:{en:"Estimated efficiency",id:"Efisiensi perkiraan"},unit:{en:"%",id:"%"}},
+        {adv:true,id:"usable",type:"number",value:70,min:1,max:100,step:1,label:{en:"Share of battery you can use",id:"Bagian baterai yang bisa dipakai"},unit:{en:"%",id:"%"}}
+      ],
+      calc:v=>{const wh=v.voltage*v.ah*v.efficiency/100*v.usable/100,h=wh/v.load;
+        return result(fmt(h*60)+" "+(lang==="id"?"menit (perkiraan)":"minutes (estimate)"),{en:"Estimated backup time with a steady load.",id:"Perkiraan waktu cadangan dengan beban tetap."},
+          [[{en:"Battery energy",id:"Energi baterai"},fmt(v.voltage*v.ah)+" Wh"],
+           [{en:"Energy you can use",id:"Energi yang bisa dipakai"},fmt(wh)+" Wh"],
+           [{en:"Connected power",id:"Daya terhubung"},fmt(v.load)+" W"],
+           [{en:"Backup time",id:"Waktu cadangan"},fmt(h)+" "+(lang==="id"?"jam":"hours")]],
+          {en:"UPS makers usually provide backup-time charts for each model and load. Use the official chart for buying decisions and important systems.",
+           id:"Pabrikan UPS biasanya menyediakan grafik waktu cadangan untuk setiap model dan beban. Gunakan grafik resmi untuk pembelian dan kebutuhan yang penting."});}},
+
+    wifi:{category:"networking",icon:"⌁",search:"wifi access point coverage users area estimator nirkabel",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"Wi-Fi Access Point Calculator",id:"Perkiraan Jumlah Titik Wi-Fi"},
+      desc:{en:"A rough starting estimate of how many Wi-Fi access points you need, based on floor area and the number of people online at once. Wall materials, interference, capacity, and local rules still need an on-site check.",
+            id:"Perkiraan awal jumlah titik Wi-Fi (access point) berdasarkan luas area dan jumlah pengguna bersamaan. Jenis dinding, gangguan sinyal, kapasitas, dan aturan setempat tetap perlu dicek langsung di lokasi."},
+      fields:[
+        {id:"area",type:"number",value:1000,min:1,max:10000000,step:10,label:{en:"Area to cover",id:"Area yang dicakup"},unit:{en:"m²",id:"m²"}},
+        {adv:true,id:"coverage",type:"number",value:150,min:10,max:5000,step:10,label:{en:"Area per access point",id:"Perkiraan luas per titik"},unit:{en:"m² per AP",id:"m²/titik"}},
+        {id:"users",type:"number",value:100,min:1,max:100000,step:1,label:{en:"Users online at once",id:"Pengguna bersamaan"},unit:{en:"users",id:"pengguna"}},
+        {adv:true,id:"usersPerAp",type:"number",value:25,min:1,max:1000,step:1,label:{en:"Users per access point",id:"Perkiraan pengguna per titik"},unit:{en:"users per AP",id:"pengguna per titik"}},
+        {adv:true,id:"reserve",type:"number",value:20,min:0,max:200,step:5,label:{en:"Extra reserve",id:"Tambahan cadangan"},unit:{en:"%",id:"%"}}
+      ],
+      calc:v=>{const byArea=Math.ceil(v.area/v.coverage),byUsers=Math.ceil(v.users/v.usersPerAp),base=Math.max(byArea,byUsers),total=Math.ceil(base*(1+v.reserve/100));
+        return result(lang==="id"?total+" titik Wi-Fi":total+" access point"+(total===1?"":"s"),{en:"A starting estimate, not a final design.",id:"Perkiraan awal, bukan desain akhir."},
+          [[{en:"Based on floor area",id:"Berdasarkan luas area"},byArea+" "+(lang==="id"?"titik":"AP")],
+           [{en:"Based on number of users",id:"Berdasarkan jumlah pengguna"},byUsers+" "+(lang==="id"?"titik":"AP")],
+           [{en:"Before adding reserve",id:"Sebelum tambahan cadangan"},base+" "+(lang==="id"?"titik":"AP")],
+           [{en:"With reserve",id:"Dengan cadangan"},total+" "+(lang==="id"?"titik":"AP")]],
+          {en:"The real number of access points depends on the floor plan, wall thickness, movement between access points, channel planning, user devices, and the speed you need. An on-site survey is recommended.",
+           id:"Jumlah titik sebenarnya tergantung denah, ketebalan dinding, perpindahan sinyal antar titik, pengaturan saluran, kemampuan perangkat pengguna, dan kecepatan yang dibutuhkan. Sebaiknya lakukan pengecekan langsung di lokasi."});}},
+
+    rack:{category:"infrastructure",icon:"▥",search:"rack space server rack units u capacity ruang",
+      openLabel:{en:"Open calculator",id:"Buka kalkulator"},
+      title:{en:"Rack Space Calculator",id:"Kalkulator Kapasitas Rack"},
+      desc:{en:"Work out how many rack units (U) your equipment uses. Enter the total U height for each group of equipment.",
+            id:"Hitung berapa unit (U) pada rack yang terpakai oleh peralatan. Isi tinggi U untuk setiap kelompok peralatan."},
+      fields:[
+        {id:"rackU",type:"number",value:42,min:1,max:100,step:1,label:{en:"Rack height",id:"Tinggi rack"},unit:{en:"U",id:"U"}},
+        {id:"server",type:"number",value:4,min:0,max:1000,step:1,label:{en:"Servers (quantity)",id:"Server (jumlah)"},unit:{en:"units",id:"unit"}},
+        {adv:true,id:"serverU",type:"number",value:2,min:.5,max:50,step:.5,label:{en:"U per server",id:"U per server"},unit:{en:"U",id:"U"}},
+        {id:"switch",type:"number",value:2,min:0,max:1000,step:1,label:{en:"Switches (quantity)",id:"Switch (jumlah)"},unit:{en:"units",id:"unit"}},
+        {adv:true,id:"switchU",type:"number",value:1,min:.5,max:50,step:.5,label:{en:"U per switch",id:"U per switch"},unit:{en:"U",id:"U"}},
+        {id:"other",type:"number",value:6,min:0,max:100,step:1,label:{en:"Other equipment space",id:"Ruang peralatan lain"},unit:{en:"U",id:"U"},help:{en:"For example patch panels, PDUs, and cable management.",id:"Misalnya patch panel, PDU, dan penataan kabel."}}
+      ],
+      calc:v=>{const used=v.server*v.serverU+v.switch*v.switchU+v.other,remaining=v.rackU-used;
+        return result(fmt(Math.max(0,remaining))+" U "+(lang==="id"?"tersisa":"remaining"),
+          remaining<0?{en:"Equipment does not fit in the selected rack height.",id:"Peralatan tidak muat di rack yang dipilih."}:{en:"Estimated rack space remaining.",id:"Perkiraan ruang rack yang tersisa."},
+          [[{en:"Rack capacity",id:"Kapasitas rack"},v.rackU+" U"],
+           [{en:"Space used",id:"Ruang terpakai"},fmt(used)+" U"],
+           [{en:"Space used",id:"Pemakaian"},fmt(used/v.rackU*100)+"%"],
+           [{en:"Status",id:"Status"},remaining<0?{en:"Does not fit",id:"Tidak muat"}:{en:"Fits",id:"Masih muat"}]],
+          {en:"Leave space for cable routing, airflow, power distribution (PDUs), cover panels, service access, and future additions. Check the real mounting needs.",
+           id:"Sisakan ruang untuk penataan kabel, aliran udara, distribusi listrik (PDU), panel penutup, akses servis, dan penambahan di masa depan. Periksa kebutuhan pemasangan sebenarnya."});}},
+
+    growth:{category:"storage",icon:"↗",search:"storage growth projection future capacity data pertumbuhan",
+      openLabel:{en:"Open planner",id:"Buka perencana"},
+      title:{en:"Storage Growth Planner",id:"Perencana Kebutuhan Penyimpanan"},
+      desc:{en:"Estimate future storage needs from your current data size and a monthly growth rate. Growth is added month by month.",
+            id:"Perkirakan kebutuhan penyimpanan dari besar data saat ini dan persentase pertumbuhan tiap bulan. Pertumbuhan dihitung bertambah dari bulan ke bulan."},
+      fields:[
+        {id:"current",type:"number",value:10,min:.01,max:10000000,step:.1,label:{en:"Current data size",id:"Ukuran data saat ini"},unit:{en:"TB",id:"TB"}},
+        {id:"growth",type:"number",value:3,min:0,max:100,step:.1,label:{en:"Monthly growth",id:"Pertumbuhan bulanan"},unit:{en:"%",id:"%"}},
+        {id:"months",type:"number",value:36,min:1,max:600,step:1,label:{en:"Time period (months)",id:"Jangka waktu (bulan)"},unit:{en:"months",id:"bulan"}},
+        {adv:true,id:"reserve",type:"number",value:20,min:0,max:300,step:5,label:{en:"Capacity reserve",id:"Cadangan kapasitas"},unit:{en:"%",id:"%"}}
+      ],
+      calc:v=>{const future=v.current*Math.pow(1+v.growth/100,v.months),total=future*(1+v.reserve/100);
+        return result(fmt(total)+" TB "+(lang==="id"?"kapasitas yang dibutuhkan":"planned capacity"),{en:"Estimated capacity, including reserve.",id:"Perkiraan kapasitas, sudah termasuk cadangan."},
+          [[{en:"Current data",id:"Data saat ini"},fmt(v.current)+" TB"],
+           [{en:"Data later",id:"Perkiraan data nanti"},fmt(future)+" TB"],
+           [{en:"Data added",id:"Pertambahan data"},fmt(future-v.current)+" TB"],
+           [{en:"Time period used",id:"Jangka waktu dipakai"},v.months+" "+(lang==="id"?"bulan":"months")]],
+          {en:"This assumes the same growth every month. Real growth can rise and fall or depend on the type of work; review and update the numbers regularly.",
+           id:"Perkiraan ini menganggap pertumbuhan tetap setiap bulan. Pertumbuhan nyata bisa naik-turun atau tergantung jenis pekerjaan; periksa dan perbarui angkanya secara berkala."});}},
+
+    requirements:{category:"planning",icon:"☷",search:"it requirements generator checklist office users servers network kebutuhan",
+      openLabel:{en:"Build checklist",id:"Buat daftar periksa"},
+      title:{en:"IT Requirements Generator",id:"Pembuat Daftar Kebutuhan TI"},
+      desc:{en:"Build a starting checklist for a company IT project. The result is a planning summary, not a final shopping list checked by a vendor.",
+            id:"Buat daftar periksa awal untuk proyek TI perusahaan. Hasilnya hanya ringkasan perencanaan, bukan daftar belanja final yang sudah dicek vendor."},
+      fields:[
+        {id:"users",type:"number",value:50,min:1,max:100000,step:1,label:{en:"Number of users",id:"Jumlah pengguna"},unit:{en:"users",id:"pengguna"}},
+        {id:"sites",type:"number",value:1,min:1,max:10000,step:1,label:{en:"Number of sites",id:"Jumlah lokasi"},unit:{en:"sites",id:"lokasi"}},
+        {id:"workstyle",type:"select",value:"office",options:OPT_WORK,label:{en:"Work environment",id:"Lingkungan kerja"}},
+        {id:"needs",type:"select",value:"mixed",options:OPT_NEEDS,label:{en:"Primary needs",id:"Kebutuhan utama"}},
+        {id:"criticality",type:"select",value:"medium",options:OPT_CRIT,label:{en:"Importance",id:"Tingkat kepentingan"}}
+      ],
+      calc:v=>{
+        const items=[
+          {en:"Confirm how many users you have, expected growth, and each site's needs",id:"Pastikan jumlah pengguna, perkiraan pertumbuhan, dan kebutuhan tiap lokasi"},
+          {en:"Write down internet, office network, Wi-Fi, and remote access needs",id:"Catat kebutuhan internet, jaringan kantor, Wi-Fi, dan akses dari luar"},
+          {en:"Decide how people log in, who can access what, device protection, and security updates",id:"Tentukan cara login, hak akses, perlindungan perangkat, dan pembaruan keamanan"},
+          {en:"Check power, cooling, rack space, and physical security",id:"Pastikan listrik, pendinginan, ruang rack, dan keamanan fisik"},
+          {en:"Make a device list, monitoring plan, and maintenance schedule",id:"Buat daftar perangkat, pemantauan, dan jadwal perawatan"}
+        ];
+        if(v.needs==="storage"||v.needs==="backup")items.push({en:"Estimate data growth, disk speed, how long to keep data, number of backup copies, and recovery targets",id:"Perkirakan pertumbuhan data, kecepatan disk, lama penyimpanan, jumlah salinan backup, dan target waktu pemulihan"});
+        if(v.needs==="cctv")items.push({en:"Note camera count, data rate, storage period, recording mode, and recorder compatibility",id:"Catat jumlah kamera, kecepatan data, lama penyimpanan, mode rekaman, dan kecocokan alat perekam"});
+        if(v.needs==="wifi"||v.workstyle==="warehouse")items.push({en:"Prepare a floor plan, coverage needs, and an on-site Wi-Fi check",id:"Siapkan denah lantai, kebutuhan jangkauan sinyal, dan pengecekan lokasi untuk Wi-Fi"});
+        if(v.criticality!=="low")items.push({en:"Set data recovery targets, backup systems, alerts, recovery tests, and who to contact",id:"Tentukan target pemulihan data, cadangan sistem, pemberitahuan masalah, uji pemulihan, dan siapa yang dihubungi"});
+        items.push({en:"Check equipment compatibility, warranty, lifespan, and total cost",id:"Periksa kecocokan perangkat, garansi, masa pakai, dan total biaya"});
+        return result(
+          {en:"Planning summary ready",id:"Ringkasan rencana sudah siap"},
+          {en:"A checklist based on your choices.",id:"Daftar periksa sesuai pilihan Anda."},
+          [[{en:"Users",id:"Pengguna"},fmt(v.users)],
+           [{en:"Sites",id:"Lokasi"},fmt(v.sites)],
+           [{en:"Environment",id:"Lingkungan"},findOpt(OPT_WORK,v.workstyle)],
+           [{en:"Priority",id:"Prioritas"},findOpt(OPT_NEEDS,v.needs)],
+           [{en:"Importance",id:"Tingkat kepentingan"},findOpt(OPT_CRIT,v.criticality)]],
+          {en:"Use “Copy result” or “Download TXT” to save this project summary. The advice here is general and should be checked by an IT professional.",
+           id:"Gunakan “Salin hasil” atau “Unduh TXT” untuk menyimpan ringkasan proyek. Saran di sini masih umum dan sebaiknya dicek oleh orang yang ahli di bidang TI."},
+          items
+        );
+      }}
+  };
+
+  const ORDER=["cctv","raid","subnet","bandwidth","backup","poe","server","ups","wifi","rack","growth","requirements"];
+  const CAT_KEY={storage:"cat_storage",networking:"cat_networking",infrastructure:"cat_infrastructure",planning:"cat_planning"};
+
+  /* ---------- helpers ---------- */
+  function fmt(n){return Number(n).toLocaleString(lang==="id"?"id-ID":"en-US",{maximumFractionDigits:2});}
+  function result(main,sub,items,note,checklist){return {main,sub,items,note,checklist};}
+  function defaults(id){const o={};definitions[id].fields.forEach(f=>o[f.id]=f.value);return o;}
+
+  /* ---------- rendering ---------- */
+  function renderTools(){
+    grid.innerHTML=ORDER.map(id=>{
+      const d=definitions[id];
+      return '<button class="ati-tool-card" data-tool="'+id+'" data-category="'+d.category+'" data-search="'+d.search+'">'
+        +'<span class="ati-card-icon">'+d.icon+'</span>'
+        +'<span class="ati-card-category">'+t(CAT_KEY[d.category])+'</span>'
+        +'<strong>'+p(d.title)+'</strong>'
+        +'<span class="ati-card-desc">'+p(d.desc)+'</span>'
+        +'<span class="ati-card-link">'+p(d.openLabel)+' <b>↗</b></span>'
+        +'</button>';
+    }).join("");
+    $$(".ati-filter-num").forEach(el=>{el.textContent=ORDER.length;});
+  }
+
+  function updateFeatured(){
+    const ft=$("#ati-featured-title"),fc=$("#ati-featured-copy");
+    if(ft)ft.textContent=p(definitions.cctv.title);
+    if(fc)fc.textContent=p(definitions.cctv.desc);
+    const out=definitions.cctv.calc(defaults("cctv"));
+    const el=$("#ati-feature-number");
+    if(el)el.innerHTML=String(p(out.main)).replace(" TB",' <small>TB</small>');
+  }
+
+  function applyLang(){
+    document.documentElement.lang=lang;
+    $$("[data-i18n]").forEach(el=>{el.textContent=t(el.dataset.i18n);});
+    $$("[data-i18n-html]").forEach(el=>{el.innerHTML=t(el.dataset.i18nHtml);});
+    $$("[data-i18n-placeholder]").forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder);});
+    $$("[data-i18n-aria]").forEach(el=>{el.setAttribute("aria-label",t(el.dataset.i18nAria));});
+    $$(".ati-lang button").forEach(b=>{
+      const on=b.dataset.lang===lang;
+      b.classList.toggle("active",on);
+      b.setAttribute("aria-pressed",on?"true":"false");
+    });
+    renderTools();
+    updateFeatured();
+    if(activeTool&&modal.classList.contains("open")){
+      openTool(activeTool,collectValues(definitions[activeTool]));
+    }
+    filterTools();
+  }
+
+  function setLang(l){
+    if(!I[l]||l===lang)return;
+    lang=l;
+    try{localStorage.setItem("ati_lang",l);}catch(e){}
+    applyLang();
+  }
+
+  /* ---------- form ---------- */
+  function visibleFields(def){return def.fields.filter(f=>mode==="advanced"||!f.adv);}
+
+  function modeRow(def){
+    const n=def.fields.filter(f=>f.adv).length;
+    if(!n)return "";
+    const btn=m=>'<button type="button" data-mode="'+m+'" class="'+(mode===m?"active":"")+'" aria-pressed="'+(mode===m?"true":"false")+'">'+t("mode_"+m)+'</button>';
+    return '<div class="ati-mode"><div class="ati-mode-switch" role="group" aria-label="'+t("mode_label")+'">'+btn("simple")+btn("advanced")+'</div>'
+      +(mode==="simple"?'<span class="ati-mode-note">'+t("mode_note")+'</span>':'')+'</div>';
+  }
+
+  function fieldHTML(f,val){
+    const cur=val===undefined?f.value:val;
+    let control="";
+    if(f.type==="select"){
+      control='<select id="ati-field-'+f.id+'" data-field="'+f.id+'">'
+        +f.options.map(o=>'<option value="'+o[0]+'" '+(String(cur)===String(o[0])?'selected':'')+'>'+p(o[1])+'</option>').join("")
+        +'</select>';
+    }else{
+      control='<input id="ati-field-'+f.id+'" data-field="'+f.id+'" type="'+f.type+'" value="'+String(cur).replace(/"/g,"&quot;")+'" '
+        +(f.type==="number"?'min="'+(f.min??0)+'" max="'+(f.max??999999999)+'" step="'+(f.step??1)+'"':'')
+        +(f.placeholder?' placeholder="'+f.placeholder+'"':'')
+        +'>';
+    }
+    return '<div class="ati-field"><label for="ati-field-'+f.id+'">'+p(f.label)+'</label>'+control
+      +(f.unit?'<small>'+t("unit_prefix")+p(f.unit)+'</small>':'')
+      +(f.help?'<small>'+p(f.help)+'</small>':'')
+      +'</div>';
+  }
+
+  function collectValues(def){
+    const v=Object.assign({},activeValues);
+    for(const f of def.fields){
+      const el=$('[data-field="'+f.id+'"]',body);
+      if(!el)continue;
+      if(f.type==="select"||f.type==="text"){
+        v[f.id]=el.value;
+      }else if(el.value!==""){
+        const n=Number(el.value);
+        v[f.id]=Number.isFinite(n)?n:el.value;
+      }
+    }
+    return v;
+  }
+
+  function readValues(def){
+    const v=Object.assign({},activeValues);
+    for(const f of def.fields){
+      const el=$('[data-field="'+f.id+'"]',body);
+      if(!el)continue;
+      if(f.type==="select"||f.type==="text"){
+        v[f.id]=el.value;
+      }else{
+        const n=Number(el.value);
+        if(el.value.trim()===""||!Number.isFinite(n)||n<(f.min??-Infinity)||n>(f.max??Infinity)){
+          el.setAttribute("aria-invalid","true");
+          el.focus();
+          throw new Error(t("err_value").replace("%s",p(f.label)));
+        }
+        el.removeAttribute("aria-invalid");
+        v[f.id]=n;
+      }
+    }
+    return v;
+  }
+
+  function renderResult(out){
+    const checklist=out.checklist||[];
+    return '<div class="ati-result-box">'
+      +'<div class="ati-result-title">'+t("result_title")+'</div>'
+      +'<div class="ati-result-main">'+p(out.main)+'</div>'
+      +'<div class="ati-result-sub">'+p(out.sub)+'</div>'
+      +'<div class="ati-result-list">'+(out.items||[]).map(i=>'<div class="ati-result-item"><span>'+p(i[0])+'</span><strong>'+p(i[1])+'</strong></div>').join("")+'</div>'
+      +(checklist.length?'<div style="margin-top:16px;font-size:11px;font-weight:700">'+t("checklist_title")+'</div><ul style="padding-left:18px;margin:8px 0 0;color:#4b5563;font-size:11px;line-height:1.8">'+checklist.map(x=>'<li>'+p(x)+'</li>').join("")+'</ul>':'')
+      +'<div class="ati-result-sub">'+p(out.note)+'</div>'
+      +'<div class="ati-calc-actions"><button class="ati-button ati-button-secondary" type="button" data-copy-result>'+t("copy_result")+'</button><button class="ati-button ati-button-secondary" type="button" data-download-result>'+t("download_txt")+'</button></div>'
+      +'</div>';
+  }
+
+  function plainResult(){const box=$(".ati-result-box",body);return box?box.innerText:"";}
+
+  function calculate(){
+    try{
+      const def=definitions[activeTool];
+      if(!def)return;
+      const v=readValues(def);
+      const out=def.calc(v);
+      body.querySelectorAll(".ati-result-box").forEach(x=>x.remove());
+      body.insertAdjacentHTML("beforeend",renderResult(out));
+    }catch(e){
+      toast(e.message||t("toast_check_input"));
+    }
+  }
+
+  function openTool(id,preset){
+    const def=definitions[id];
+    if(!def)return;
+    if(!modal.classList.contains("open"))lastFocus=document.activeElement;
+    activeTool=id;
+    activeValues=Object.assign(defaults(id),preset||{});
+    title.textContent=p(def.title);
+    category.textContent=t(CAT_KEY[def.category]);
+    desc.textContent=p(def.desc);
+    const fields=visibleFields(def);
+    body.innerHTML=modeRow(def)+'<div class="ati-form-grid">'+fields.map(f=>fieldHTML(f,activeValues[f.id])).join("")+'</div>'
+      +'<div class="ati-calc-actions"><button class="ati-button ati-button-primary" type="button" id="ati-calculate">'+t("calc_button")+' <span aria-hidden="true">→</span></button></div>';
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+    calculate();
+    if(!preset){
+      const c=$("#ati-close");
+      if(c)setTimeout(()=>c.focus(),20);
+      const first=$("input,select",body);
+      if(first)first.focus({preventScroll:true});
+    }
+  }
+
+  function closeModal(){
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+    activeTool=null;
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
+
+  function toast(message){
+    const el=$("#ati-toast");
+    el.textContent=message;
+    el.classList.add("show");
+    clearTimeout(toast.timer);
+    toast.timer=setTimeout(()=>el.classList.remove("show"),2400);
+  }
+
+  function filterTools(){
+    const q=search.value.trim().toLowerCase();
+    const activeEl=$(".ati-filter.active");
+    const active=activeEl?activeEl.dataset.filter:"all";
+    let count=0;
+    $$(".ati-tool-card").forEach(card=>{
+      const matchCat=active==="all"||card.dataset.category===active;
+      const matchQuery=!q||(card.innerText+" "+card.dataset.search).toLowerCase().includes(q);
+      const show=matchCat&&matchQuery;
+      card.hidden=!show;
+      if(show)count++;
+    });
+    $("#ati-empty").hidden=count>0;
+    $("#ati-count").textContent=t("count_tools").replace("%d",count);
+  }
+
+  function fallbackCopy(text){
+    const ta=document.createElement("textarea");
+    ta.value=text;
+    ta.style.position="fixed";
+    ta.style.opacity="0";
+    document.body.appendChild(ta);
+    ta.select();
+    try{document.execCommand("copy");toast(t("toast_copied"));}
+    catch(e){toast(t("toast_copy_fail"));}
+    ta.remove();
+  }
+
+  /* ---------- events ---------- */
+  root.addEventListener("click",function(e){
+    const lb=e.target.closest("[data-lang]");
+    if(lb){setLang(lb.dataset.lang);return;}
+
+    const open=e.target.closest("[data-open-tool],[data-tool]");
+    if(open){e.preventDefault();openTool(open.dataset.openTool||open.dataset.tool);return;}
+
+    const filter=e.target.closest("[data-filter]");
+    if(filter){
+      $$(".ati-filter").forEach(b=>b.classList.toggle("active",b===filter));
+      filterTools();
+      return;
+    }
+
+    const modeBtn=e.target.closest("[data-mode]");
+    if(modeBtn){
+      const def=definitions[activeTool];
+      if(def&&modeBtn.dataset.mode!==mode){
+        const vals=collectValues(def);
+        if(modeBtn.dataset.mode==="simple")def.fields.forEach(f=>{if(f.adv)vals[f.id]=f.value;});
+        activeValues=vals;
+        mode=modeBtn.dataset.mode;
+        try{localStorage.setItem("ati_mode",mode);}catch(err){}
+        openTool(activeTool,vals);
+        const nb=$('[data-mode="'+mode+'"]',body);
+        if(nb)nb.focus({preventScroll:true});
+      }
+      return;
+    }
+
+    if(e.target.closest("[data-close-modal]")){closeModal();return;}
+    if(e.target.closest("#ati-calculate")){calculate();return;}
+    if(e.target.closest("#ati-reset")){if(activeTool)openTool(activeTool);return;}
+
+    if(e.target.closest("[data-copy-result]")){
+      const text=plainResult();
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(()=>toast(t("toast_copied"))).catch(()=>fallbackCopy(text));
+      }else fallbackCopy(text);
+      return;
+    }
+
+    if(e.target.closest("[data-download-result]")){
+      const text=title.textContent+"\n\n"+plainResult();
+      const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement("a");
+      a.href=url;
+      a.download=activeTool+"-result-"+lang+".txt";
+      a.click();
+      URL.revokeObjectURL(url);
+      return;
+    }
+  });
+
+  search.addEventListener("input",filterTools);
+  search.addEventListener("keydown",e=>{
+    if(e.key==="Escape"){e.target.value="";filterTools();}
+    if(e.key==="Enter"){
+      const first=$(".ati-tool-card:not([hidden])");
+      if(first)openTool(first.dataset.tool);
+    }
+  });
+
+  body.addEventListener("change",e=>{
+    if(e.target.matches("[data-field]"))calculate();
+  });
+  body.addEventListener("input",e=>{
+    if(e.target.matches('[data-field]:not([type="text"])')){
+      const def=definitions[activeTool];
+      if(def&&def.fields.every(f=>f.type==="text"||f.type==="select"||($('[data-field="'+f.id+'"]',body)?.value||"").trim()!==""))calculate();
+    }
+  });
+
+  document.addEventListener("keydown",function(e){
+    if(!root.isConnected)return;
+    if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==="k"){e.preventDefault();search.focus();}
+    if(e.key==="Escape"&&modal.classList.contains("open"))closeModal();
+    if(e.key==="Tab"&&modal.classList.contains("open")){
+      const focusables=$$('button:not([disabled]),input:not([disabled]),select:not([disabled]),a[href]',modal).filter(el=>el.offsetParent!==null);
+      if(!focusables.length)return;
+      const first=focusables[0],last=focusables[focusables.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    }
+  });
+
+  /* ---------- init ---------- */
+  applyLang();
+})();
+</script>
+
+</body>
+</html>
