@@ -11,7 +11,7 @@
 <body style="margin:0;padding:0 16px;">
 <!--
 AsaTechID Tools Hub — Elementor Custom HTML
-Version: 2.4.0 (CCTV codec MJPEG/H.264/H.265)
+Version: 2.5.0 (CCTV resolution/quality/FPS/codec)
 Paste into Elementor > Custom HTML widget.
 -->
 <div id="asatechid-tools" class="ati">
@@ -327,6 +327,9 @@ Paste into Elementor > Custom HTML widget.
   const OPT_NEEDS=[["mixed",{en:"General IT + networking",id:"TI umum + jaringan"}],["storage",{en:"Server / storage",id:"Server / penyimpanan"}],["cctv",{en:"CCTV / monitoring",id:"CCTV / pemantauan"}],["wifi",{en:"Wi-Fi / wireless",id:"Wi-Fi / nirkabel"}],["backup",{en:"Backup / recovery after a disaster",id:"Backup / pemulihan setelah musibah"}]];
   const OPT_CRIT=[["low",{en:"Normal",id:"Biasa"}],["medium",{en:"Important for business",id:"Penting untuk bisnis"}],["high",{en:"Very important",id:"Sangat penting"}]];
   const OPT_CODEC=[["mjpeg",{en:"MJPEG (no temporal compression)",id:"MJPEG (tanpa kompresi temporal)"}],["h264",{en:"H.264 / AVC",id:"H.264 / AVC"}],["h265",{en:"H.265 / HEVC",id:"H.265 / HEVC"}],["custom",{en:"Custom bitrate",id:"Bitrate kustom"}]];
+  const OPT_RES=[["720p",{en:"720p (1280×720)",id:"720p (1280×720)"}],["1080p",{en:"1080p (1920×1080)",id:"1080p (1920×1080)"}],["2k",{en:"2K / QHD (2560×1440)",id:"2K / QHD (2560×1440)"}],["4k",{en:"4K / UHD (3840×2160)",id:"4K / UHD (3840×2160)"}]];
+  const OPT_QUALITY=[["low",{en:"Low",id:"Rendah"}],["medium",{en:"Medium",id:"Sedang"}],["high",{en:"High",id:"Tinggi"}]];
+  const OPT_FPS=[["15",{en:"15 FPS",id:"15 FPS"}],["20",{en:"20 FPS",id:"20 FPS"}],["25",{en:"25 FPS",id:"25 FPS"}],["30",{en:"30 FPS",id:"30 FPS"}]];
   function findOpt(list,val){const o=list.find(x=>String(x[0])===String(val));return o?p(o[1]):String(val);}
 
   /* ---------- tool definitions ---------- */
@@ -334,20 +337,27 @@ Paste into Elementor > Custom HTML widget.
     cctv:{category:"storage",icon:"▤",search:"cctv storage surveillance hdd camera retention kamera pengawasan penyimpanan",
       openLabel:{en:"Open calculator",id:"Buka kalkulator"},
       title:{en:"CCTV Storage Calculator",id:"Kalkulator Penyimpanan CCTV"},
-      desc:{en:"Estimate how much storage you need for CCTV that records all the time or only when it detects movement. Choose the video codec to get a realistic bitrate estimate, or enter a custom bitrate from your camera/NVR spec.",
-            id:"Perkiraan ruang penyimpanan untuk rekaman CCTV terus-menerus atau hanya saat ada gerakan. Pilih kodek video untuk mendapatkan estimasi bitrate realistis, atau isi bitrate kustom dari spesifikasi kamera/NVR Anda."},
+      desc:{en:"Estimate how much storage you need for CCTV. Choose resolution, quality, FPS, and codec to get a realistic bitrate, or enter a custom bitrate from your camera/NVR spec.",
+            id:"Perkiraan ruang penyimpanan untuk CCTV. Pilih resolusi, kualitas, FPS, dan kodek untuk mendapatkan bitrate realistis, atau isi bitrate kustom dari spesifikasi kamera/NVR Anda."},
       fields:[
         {id:"cameras",type:"number",value:16,min:1,max:10000,step:1,label:{en:"Number of cameras",id:"Jumlah kamera"},unit:{en:"cameras",id:"kamera"}},
-        {id:"codec",type:"select",value:"h264",options:OPT_CODEC,label:{en:"Video codec / compression",id:"Kodek video / kompresi"},help:{en:"Typical bitrate for 1080p30: MJPEG ~20 Mbps, H.264 ~4 Mbps, H.265 ~2 Mbps. Adjust for your resolution/FPS.",id:"Bitrate khas 1080p30: MJPEG ~20 Mbps, H.264 ~4 Mbps, H.265 ~2 Mbps. Sesuaikan untuk resolusi/FPS Anda."}},
-        {id:"bitrate",type:"number",value:4,min:.1,max:1000,step:.1,label:{en:"Average data rate per camera",id:"Kecepatan data rata-rata per kamera"},unit:{en:"Mbps",id:"Mbps"},help:{en:"Use the average data rate from your camera/NVR spec. This overrides the codec preset.",id:"Gunakan kecepatan data rata-rata dari spesifikasi kamera/NVR. Ini mengeset ulang preset kodek."}},
+        {id:"resolution",type:"select",value:"1080p",options:OPT_RES,label:{en:"Resolution",id:"Resolusi"},help:{en:"Higher resolution needs more bandwidth.",id:"Resolusi lebih tinggi butuh bandwidth lebih besar."}},
+        {id:"quality",type:"select",value:"medium",options:OPT_QUALITY,label:{en:"Image quality",id:"Kualitas gambar"},help:{en:"Higher quality = higher bitrate.",id:"Kualitas lebih tinggi = bitrate lebih besar."}},
+        {id:"fps",type:"select",value:"25",options:OPT_FPS,label:{en:"Frame rate (FPS)",id:"Frame rate (FPS)"},help:{en:"Frames per second. More FPS = more data.",id:"Frame per detik. FPS lebih banyak = data lebih banyak."}},
+        {id:"codec",type:"select",value:"h264",options:OPT_CODEC,label:{en:"Video codec / compression",id:"Kodek video / kompresi"},help:{en:"Compression efficiency: MJPEG (none) > H.264 > H.265 (best).",id:"Efisiensi kompresi: MJPEG (tidak ada) > H.264 > H.265 (terbaik)."}},
+        {id:"bitrate",type:"number",value:0,min:0,max:1000,step:.1,label:{en:"Custom bitrate per camera (0 = auto)",id:"Bitrate kustom per kamera (0 = otomatis)"},unit:{en:"Mbps",id:"Mbps"},help:{en:"Leave 0 to auto-calculate from resolution/quality/FPS/codec. Enter a value to override.",id:"Kosongkan 0 untuk hitung otomatis dari resolusi/kualitas/FPS/kodek. Isi nilai untuk override."}},
         {adv:true,id:"hours",type:"number",value:24,min:.1,max:24,step:.5,label:{en:"Recording hours per day",id:"Jam merekam per hari"},unit:{en:"hours/day",id:"jam/hari"}},
         {id:"days",type:"number",value:30,min:1,max:3650,step:1,label:{en:"Storage period",id:"Lama penyimpanan"},unit:{en:"days",id:"hari"}},
         {adv:true,id:"reserve",type:"number",value:15,min:0,max:80,step:1,label:{en:"Capacity reserve",id:"Cadangan kapasitas"},unit:{en:"%",id:"%"}},
         {adv:true,id:"motion",type:"number",value:100,min:1,max:100,step:1,label:{en:"Share of time recording",id:"Persentase waktu merekam"},unit:{en:"%",id:"%"},help:{en:"Recording all the time = 100%. Movement-only recording is usually lower and depends on the scene.",id:"Rekaman terus-menerus = 100%. Rekaman hanya saat ada gerakan biasanya lebih sedikit, tergantung situasi."}}
       ],
       calc:v=>{
+        const resMap={"720p":1,"1080p":2.25,"2k":4,"4k":9};
+        const qualMap={low:0.6,medium:1,high:1.6};
+        const fpsMap={15:0.5,20:0.67,25:0.83,30:1};
         const codecMap={mjpeg:1,h264:0.25,h265:0.15,custom:1};
-        const effBitrate=(v.codec==="custom"?v.bitrate:(v.bitrate*codecMap[v.codec]));
+        const baseBitrate=resMap[v.resolution]*qualMap[v.quality]*fpsMap[v.fps]*2.0;
+        const effBitrate=v.bitrate>0?v.bitrate:baseBitrate*codecMap[v.codec];
         const raw=v.cameras*effBitrate*3600*v.hours*v.days/8/1e6*(v.motion/100);
         const total=raw/(1-v.reserve/100);
         return result(fmt(total)+" TB",
@@ -357,8 +367,8 @@ Paste into Elementor > Custom HTML widget.
            [{en:"Approx. number of 8 TB disks",id:"Perkiraan jumlah disk 8 TB"},Math.ceil(total/8)+" "+(lang==="id"?"disk":"drives")],
            [{en:"Effective bitrate per camera",id:"Bitrate efektif per kamera"},fmt(effBitrate)+" Mbps"],
            [{en:"Total camera data rate",id:"Total kecepatan data kamera"},fmt(v.cameras*effBitrate)+" Mbps"]],
-          {en:"Uses decimal TB (1 TB = 1,000,000,000,000 bytes). Extra load on the recorder, audio, variable bitrate, RAID, and manufacturer formatting can change usable capacity. Actual bitrate depends on scene complexity, resolution, FPS, and VBR/CBR settings.",
-           id:"Menggunakan TB desimal (1 TB = 1.000.000.000.000 byte). Beban tambahan pada alat perekam, audio, bitrate variabel, RAID, dan format pabrikan dapat mengubah kapasitas yang bisa dipakai. Bitrate aktual bergantung pada kompleksitas scene, resolusi, FPS, dan pengaturan VBR/CBR."});}},
+          {en:"Uses decimal TB (1 TB = 1,000,000,000,000 bytes). Extra load on the recorder, audio, variable bitrate, RAID, and manufacturer formatting can change usable capacity. Auto bitrate based on typical H.264 1080p30 Medium ≈ 4 Mbps reference.",
+           id:"Menggunakan TB desimal (1 TB = 1.000.000.000.000 byte). Beban tambahan pada alat perekam, audio, bitrate variabel, RAID, dan format pabrikan dapat mengubah kapasitas yang bisa dipakai. Bitrate otomatis berbasis referensi H.264 1080p30 Medium ≈ 4 Mbps."});}},
 
     raid:{category:"storage",icon:"▦",search:"raid disk array usable capacity redundancy disk array kapasitas",
       openLabel:{en:"Open calculator",id:"Buka kalkulator"},
